@@ -1,0 +1,16 @@
+{
+  "name": "MyApp",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "knex": "^0.14.2",
+    "nodemon": "^1.14.11",
+    "pg": "^7.4.1"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon server/index.js --ignore node_modules/"
+  }
+}

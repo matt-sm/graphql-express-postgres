@@ -1,7 +1,14 @@
-var config      = require('../knexfile.js');  
-var env         = 'development';  
-var knex        = require('knex')(config[env]);
+import knex from 'knex';
 
-module.exports = knex;
+const db = knex({
+   client: 'postgresql',
+    connection: {
+      database: 'blog'
+    }
+ });
 
-knex.migrate.latest([config]); 
+db.migrate.latest(); 
+
+export const getAllUsers = () => (
+    db.select().table('users')
+);

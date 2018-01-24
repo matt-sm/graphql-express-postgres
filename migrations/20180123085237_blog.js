@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
 return Promise.all([
 
         knex.schema.createTable('users', function(table) {
-            table.increments('uid').primary();
+            table.increments('id').primary();
             table.string('username');
             table.string('password');
             table.string('name');
@@ -16,7 +16,7 @@ return Promise.all([
             table.string('title');
             table.string('body');
             table.integer('author_id')
-                 .references('uid')
+                 .references('id')
                  .inTable('users');
             table.dateTime('postDate');
         }),
@@ -25,7 +25,7 @@ return Promise.all([
             table.increments('id').primary();
             table.string('body');
             table.integer('author_id')
-                 .references('uid')
+                 .references('id')
                  .inTable('users');
             table.integer('post_id')
                  .references('id')

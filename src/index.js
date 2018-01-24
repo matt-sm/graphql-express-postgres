@@ -1,28 +1,14 @@
-var express = require('express');  
-var app = express();  
-var db  = require('./db');
-var graphqlHTTP = require('express-graphql');
-var { buildSchema } = require('graphql');
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import Schema from './schema';
+import db from './db';
 
-var port = 4000;
-
-var schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
-
-var root = {
-  hello: () => {
-    return 'Hello world!';
-  },
-};
+const app = express();
 
 app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
+  schema: Schema,
+  graphiql: true
 }));
 
-app.listen(port);  
-console.log("Listening on port", port);  
+app.listen(4000);  
+console.log("Listening on port 4000");  

@@ -5,6 +5,9 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
     "express": "^4.16.2",
     "express-graphql": "^0.6.11",
     "graphql": "^0.12.3",
@@ -13,6 +16,14 @@
     "pg": "^7.4.1"
   },
   "scripts": {
-    "start": "./node_modules/.bin/nodemon server/index.js --ignore node_modules/"
+    "prestart": "npm run -s build",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.js --exec \"node -r babel-register\"",
+    "clean": "rimraf dist",
+    "build": "npm run clean && mkdir -p dist && babel src -s -D -d dist"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-register": "^6.26.0"
   }
 }

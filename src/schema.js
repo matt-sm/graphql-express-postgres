@@ -1,4 +1,4 @@
-import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } from 'graphql';
+import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } from 'graphql'
 import { getAllUsers } from 'db'
 
 const userType = new GraphQLObjectType({
@@ -7,29 +7,29 @@ const userType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: new GraphQLNonNull(GraphQLString),
-      description: 'user id',
+      description: 'user id'
     },
     name: {
       type: GraphQLString,
-      description: 'user name',
+      description: 'user name'
     }
   })
-});
+})
 
 const Schema = new GraphQLSchema({
   query: new GraphQLObjectType({
-      name: 'RootQueryType',
-      fields: {
-        hello: {
-          type: GraphQLString,
-          resolve: () => 'world'
-        },
-        users: {
-          type: new GraphQLList(userType),
-          resolve: getAllUsers
-        }
+    name: 'RootQueryType',
+    fields: {
+      hello: {
+        type: GraphQLString,
+        resolve: () => 'world'
+      },
+      users: {
+        type: new GraphQLList(userType),
+        resolve: getAllUsers
       }
-    })
-});
+    }
+  })
+})
 
-export default Schema;
+export default Schema

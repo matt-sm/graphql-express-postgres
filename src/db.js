@@ -1,14 +1,12 @@
-import knex from 'knex';
+import knex from 'knex'
 
 const db = knex({
-   client: 'postgresql',
-    connection: {
-      database: 'blog'
-    }
- });
+  client: 'postgresql',
+  connection: {
+    database: 'blog'
+  }
+})
 
-db.migrate.latest(); 
+db.migrate.latest()
 
-export const getAllUsers = () => (
-    db.select().table('users')
-);
+export const getAllUsers = () => db.select().table('users')

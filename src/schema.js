@@ -8,11 +8,11 @@ const resolvers = {
   Query: {
     users: () => getAllUsers()
   }
-};
+}
 
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers
-});
+})
 
 export default schema

@@ -2,9 +2,11 @@ import express from 'express'
 import graphqlHTTP from 'express-graphql'
 import schema from './schema'
 import db from './db'
+import morgan from 'morgan'
 
 const app = express()
 
+app.use(morgan('tiny'))
 app.use(
   '/graphql',
   graphqlHTTP({

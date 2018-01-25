@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
 return Promise.all([
 
-        knex.schema.createTable('users', function(table) {
+        knex.schema.createTable('user', function(table) {
             table.increments('id').primary();
             table.string('username');
             table.string('password');
@@ -11,25 +11,25 @@ return Promise.all([
             table.timestamps();
         }),
 
-        knex.schema.createTable('posts', function(table){
+        knex.schema.createTable('post', function(table){
             table.increments('id').primary();
             table.string('title');
             table.string('body');
             table.integer('author_id')
                  .references('id')
-                 .inTable('users');
+                 .inTable('user');
             table.dateTime('postDate');
         }),
 
-        knex.schema.createTable('comments', function(table){
+        knex.schema.createTable('comment', function(table){
             table.increments('id').primary();
             table.string('body');
             table.integer('author_id')
                  .references('id')
-                 .inTable('users');
+                 .inTable('user');
             table.integer('post_id')
                  .references('id')
-                 .inTable('posts');
+                 .inTable('post');
             table.dateTime('postDate');
         })
     ])  
@@ -37,8 +37,8 @@ return Promise.all([
 
 exports.down = function(knex, Promise) {
     return Promise.all([
-            knex.schema.dropTable('users'),
-            knex.schema.dropTable('posts'),
-            knex.schema.dropTable('comments')
+            knex.schema.dropTable('user'),
+            knex.schema.dropTable('post'),
+            knex.schema.dropTable('comment')
         ])  
 };

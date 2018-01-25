@@ -1,4 +1,5 @@
 import knex from 'knex'
+import { Model } from 'objection'
 
 const db = knex({
   client: 'postgresql',
@@ -9,4 +10,10 @@ const db = knex({
 
 db.migrate.latest()
 
-export const getAllUsers = () => db.select().table('users')
+Model.knex(db)
+
+export class User extends Model {
+  static get tableName() {
+    return 'user';
+  }
+}

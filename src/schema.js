@@ -1,5 +1,5 @@
 import { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } from 'graphql'
-import { getAllUsers } from 'db'
+import { getAllUsers } from './db'
 
 const userType = new GraphQLObjectType({
   name: 'User',

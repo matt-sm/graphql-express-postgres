@@ -1,17 +1,8 @@
 import { getAllUsers } from './db'
-import { makeExecutableSchema } from 'graphql-tools';
+import { makeExecutableSchema } from 'graphql-tools'
+import { importSchema } from 'graphql-import'
 
-const typeDefs = `
-  type User {
-    id: Int!
-    name: String
-  }
-
-  # the schema allows the following query:
-  type Query {
-    users: [User]
-  }
-`;
+const typeDefs = importSchema('./schema/schema.graphql')
 
 const resolvers = {
   Query: {

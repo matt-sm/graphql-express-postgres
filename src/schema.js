@@ -6,7 +6,12 @@ const typeDefs = importSchema('./schema/schema.graphql')
 
 const resolvers = {
   Query: {
-    users: () => User.query()
+    me: (parent, args, context, info) => {
+      if (context.user) {
+        return context.user
+      }
+      throw new Error('User is not logged in (or authenticated).')
+    }
   }
 }
 

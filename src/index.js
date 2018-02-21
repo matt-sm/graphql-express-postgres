@@ -17,7 +17,7 @@ app.use(
   })
 )
 
-app.use('/graphql', function(req, res, done) {
+app.use('/graphql', (req, res, done) => {
   const user = req.auth && User.get(req.auth.sub)
   req.context = {
     user: user

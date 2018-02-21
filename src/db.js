@@ -14,6 +14,6 @@ Model.knex(db)
 
 export class User extends Model {
   static get tableName() {
-    return 'user';
+    return 'user'
   }
 }

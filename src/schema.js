@@ -6,7 +6,7 @@ const typeDefs = importSchema('./schema/schema.graphql')
 
 const resolvers = {
   Query: {
-    me: (parent, args, context, info) => {
+    me: (parent, args, { context }, info) => {
       if (context.user) {
         return context.user
       }

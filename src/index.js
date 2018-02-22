@@ -19,7 +19,7 @@ app.use(
 
 app.use('/graphql', async (req, res, next) => {
   if (req.auth) {
-    const user = await User.query().findOne({email: req.auth.sub})
+    const user = await User.query().findOne({ email: req.auth.sub })
     req.context = {
       user
     }

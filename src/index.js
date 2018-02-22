@@ -11,7 +11,7 @@ app.use(morgan('tiny'))
 app.use(
   '/graphql',
   jwt({
-    secret: 'secret',
+    secret: 'shhhhhhared-secret',
     requestProperty: 'auth',
     credentialsRequired: false
   })
@@ -19,7 +19,7 @@ app.use(
 
 app.use('/graphql', async (req, res, next) => {
   if (req.auth) {
-    const user = await User.query().findById(req.auth.sub)
+    const user = await User.query().findOne({email: req.auth.sub})
     req.context = {
       user
     }

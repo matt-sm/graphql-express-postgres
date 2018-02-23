@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 const typeDefs = importSchema('./schema/schema.graphql')
+const saltRounds = 10;
 
 const resolvers = {
   Query: {
@@ -23,6 +24,16 @@ const resolvers = {
       }
 
       throw new Error('Invalid email or password.')
+    },
+    addUser: async (parent, { name, email, password }) => {
+      const current_user = await User.query().findOne({ email: email })
+      if (current_user) {
+        throw new Error(`User ${email} already exists.`)
+      }
+
+      const hash = await bcrypt.hash(password, saltRounds)
+      const user = await User.query().insert({ name: name, email: email, password: hash })
+      return user
     }
   }
 }

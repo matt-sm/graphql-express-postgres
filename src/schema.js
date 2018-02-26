@@ -1,4 +1,4 @@
-import { User } from './db'
+import { User, Post } from './db'
 import { makeExecutableSchema } from 'graphql-tools'
 import { importSchema } from 'graphql-import'
 import jwt from 'jsonwebtoken'
@@ -10,10 +10,16 @@ const saltRounds = 10
 const resolvers = {
   Query: {
     me: (parent, args, { context }, info) => {
-      if (context.user) {
+      if (context && context.user) {
         return context.user
+      } else {
+        throw new Error('User is not logged in (or authenticated).')
       }
-      throw new Error('User is not logged in (or authenticated).')
+    }
+  },
+  User: {
+    Posts: async user => {
+      return await Post.query().where({ author_id: user.id })
     }
   },
   Mutation: {

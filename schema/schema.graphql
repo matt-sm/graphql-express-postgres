@@ -2,6 +2,13 @@ type User {
   id: Int!
   name: String
   email: String
+  posts: [Post]
+}
+
+type Post {
+  id: Int!
+  title: String
+  body: String
 }
 
 type Query {

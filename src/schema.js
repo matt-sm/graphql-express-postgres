@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 const typeDefs = importSchema('./schema/schema.graphql')
-const saltRounds = 10;
+const saltRounds = 10
 
 const resolvers = {
   Query: {

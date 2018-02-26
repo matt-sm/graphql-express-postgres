@@ -1,14 +1,8 @@
+import config from '../knexfile'
 import knex from 'knex'
 import { Model } from 'objection'
 
-const db = knex({
-  client: 'postgresql',
-  connection: {
-    database: 'blog'
-  }
-})
-
-db.migrate.latest()
+const db = knex(config)
 
 Model.knex(db)
 

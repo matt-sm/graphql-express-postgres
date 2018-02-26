@@ -1,6 +1,6 @@
 
-exports.up = function(knex, Promise) {
-return Promise.all([
+exports.up = async (knex, Promise) => {
+return await Promise.all([
 
         knex.schema.createTable('user', function(table) {
             table.increments('id').primary();
@@ -35,8 +35,8 @@ return Promise.all([
     ])  
 };
 
-exports.down = function(knex, Promise) {
-    return Promise.all([
+exports.down = async (knex, Promise) => {
+    return await Promise.all([
             knex.schema.dropTable('user'),
             knex.schema.dropTable('post'),
             knex.schema.dropTable('comment')

@@ -12,3 +12,22 @@ Install:
 - build and run on a server: `npm start`
 - db migrations: `npm run migrate`
 - format code: `npm run prettier`
+
+## Samples
+### Queries
+```
+{
+  Me {
+    id
+    email
+    Posts {
+      title
+    }   
+  }
+}
+```
+### Mutations
+```
+mutation{addUser(name:"User", email:"user@test.com", password:"password") }
+mutation{createToken(email:"user@test.com", password:"password") }
+```

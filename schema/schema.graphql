@@ -9,10 +9,11 @@ type Post {
   id: Int!
   title: String
   body: String
+  User: User
 }
 
 type Query {
-  me: User
+  Me: User
 }
 
 type Mutation {

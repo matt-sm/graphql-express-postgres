@@ -29,3 +29,9 @@ export class Post extends Model {
     return 'post'
   }
 }
+
+export class Comment extends Model {
+  static get tableName() {
+    return 'comment'
+  }
+}

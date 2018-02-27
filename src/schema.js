@@ -1,4 +1,4 @@
-import { User, Post } from './db'
+import { User, Post, Comment } from './db'
 import { makeExecutableSchema } from 'graphql-tools'
 import { importSchema } from 'graphql-import'
 import jwt from 'jsonwebtoken'
@@ -25,6 +25,9 @@ const resolvers = {
   Post: {
     User: async post => {
       return await User.query().findOne({ id: post.author_id })
+    },
+    Comments: async post => {
+      return await Comment.query().where({ post_id: post.id })
     }
   },
   Mutation: {

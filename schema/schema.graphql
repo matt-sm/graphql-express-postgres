@@ -10,6 +10,14 @@ type Post {
   title: String
   body: String
   User: User
+  Comments: [Comment]
+}
+
+type Comment {
+  id: Int!
+  body: String
+  User: User
+  Post: Post
 }
 
 type Query {

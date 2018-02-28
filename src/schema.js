@@ -8,7 +8,7 @@ const typeDefs = importSchema('./schema/schema.graphql')
 const saltRounds = 10
 
 const authenticated = fn => (parent, args, { context }, info) => {
-  if (context.user) {
+  if (context && context.user) {
     return fn(parent, args, context, info)
   }
   throw new Error('User is not authenticated')
@@ -50,7 +50,10 @@ const resolvers = {
 
       const hash = await bcrypt.hash(password, saltRounds)
       return await User.query().insert({ name, email, hash })
-    }
+    },
+    addPost: authenticated(async (parent, { title, body }, context) => {
+      return await Post.query().insert({ title, body, author_id: context.user.id })
+    })
   }
 }
 

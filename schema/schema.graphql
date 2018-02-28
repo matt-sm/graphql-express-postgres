@@ -2,26 +2,26 @@ type User {
   id: Int!
   name: String
   email: String
-  Posts: [Post]
+  posts: [Post]
 }
 
 type Post {
   id: Int!
   title: String
   body: String
-  User: User
-  Comments: [Comment]
+  user: User
+  comments: [Comment]
 }
 
 type Comment {
   id: Int!
   body: String
-  User: User
-  Post: Post
+  user: User
+  post: Post
 }
 
 type Query {
-  Me: User
+  viewer: User
 }
 
 type Mutation {

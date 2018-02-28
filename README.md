@@ -17,11 +17,13 @@ Install:
 ### Queries
 ```
 {
-  Me {
-    id
+  viewer {
     email
-    Posts {
+    posts {
       title
+      comments {
+        body
+      }
     }   
   }
 }

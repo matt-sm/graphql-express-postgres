@@ -9,7 +9,7 @@ const saltRounds = 10
 
 const resolvers = {
   Query: {
-    Me: (parent, args, { context }, info) => {
+    viewer: (parent, args, { context }, info) => {
       if (context && context.user) {
         return context.user
       } else {
@@ -18,15 +18,15 @@ const resolvers = {
     }
   },
   User: {
-    Posts: async user => {
+    posts: async user => {
       return await Post.query().where({ author_id: user.id })
     }
   },
   Post: {
-    User: async post => {
+    user: async post => {
       return await User.query().findOne({ id: post.author_id })
     },
-    Comments: async post => {
+    comments: async post => {
       return await Comment.query().where({ post_id: post.id })
     }
   },

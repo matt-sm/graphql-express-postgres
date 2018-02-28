@@ -35,7 +35,7 @@ const resolvers = {
   },
   Mutation: {
     createToken: async (parent, { email, password }) => {
-      const user = await User.query().findOne({ email: email })
+      const user = await User.query().findOne({ email })
       if (user && (await bcrypt.compare(password, user.password))) {
         return jwt.sign({ sub: user.email }, 'shhhhhhared-secret')
       }
@@ -43,13 +43,13 @@ const resolvers = {
       throw new Error('Invalid email or password.')
     },
     addUser: async (parent, { name, email, password }) => {
-      const current_user = await User.query().findOne({ email: email })
+      const current_user = await User.query().findOne({ email })
       if (current_user) {
         throw new Error(`User ${email} already exists.`)
       }
 
       const hash = await bcrypt.hash(password, saltRounds)
-      return await User.query().insert({ name: name, email: email, password: hash })
+      return await User.query().insert({ name, email, hash })
     }
   }
 }

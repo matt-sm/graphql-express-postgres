@@ -7,15 +7,18 @@ import bcrypt from 'bcrypt'
 const typeDefs = importSchema('./schema/schema.graphql')
 const saltRounds = 10
 
+const authenticated = fn => (parent, args, { context }, info) => {
+  if (context.user) {
+    return fn(parent, args, context, info)
+  }
+  throw new Error('User is not authenticated')
+}
+
 const resolvers = {
   Query: {
-    viewer: (parent, args, { context }, info) => {
-      if (context && context.user) {
-        return context.user
-      } else {
-        throw new Error('User is not logged in (or authenticated).')
-      }
-    }
+    viewer: authenticated((parent, args, context) => {
+      return context.user
+    })
   },
   User: {
     posts: async user => {
@@ -46,8 +49,7 @@ const resolvers = {
       }
 
       const hash = await bcrypt.hash(password, saltRounds)
-      const user = await User.query().insert({ name: name, email: email, password: hash })
-      return user
+      return await User.query().insert({ name: name, email: email, password: hash })
     }
   }
 }

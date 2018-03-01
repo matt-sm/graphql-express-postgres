@@ -6,5 +6,14 @@ module.exports = {
     connection: {
       database: 'blog'
     }
+  },
+  test: {
+    client: 'postgresql',
+    connection: {
+      database: 'blog-test'
+    },
+    seeds: {
+        directory: __dirname + '/seeds/test'
+    }
   }
 };

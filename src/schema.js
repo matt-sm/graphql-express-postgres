@@ -53,6 +53,9 @@ const resolvers = {
     },
     addPost: authenticated(async (parent, { title, body }, context) => {
       return await Post.query().insert({ title, body, author_id: context.user.id })
+    }),
+    addComment: authenticated(async (parent, { body, post_id }, context) => {
+      return await Comment.query().insert({ body, post_id, author_id: context.user.id })
     })
   }
 }

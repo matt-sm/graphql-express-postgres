@@ -28,4 +28,5 @@ type Mutation {
   createToken(email: String!, password: String!): String
   addUser(name: String!, email: String!, password: String!): User
   addPost(title: String!, body: String!): Post
+  addComment(body: String!, post_id: Int!): Comment
 }

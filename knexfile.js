@@ -1,8 +1,10 @@
 // Update with your config settings.
 
 module.exports = {
-  client: 'postgresql',
-  connection: {
-    database: 'blog'
+  development: {
+    client: 'postgresql',
+    connection: {
+      database: 'blog'
+    }
   }
 };

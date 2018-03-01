@@ -21,8 +21,14 @@ const resolvers = {
     })
   },
   User: {
-    posts: async user => {
-      return await Post.query().where({ author_id: user.id })
+    posts: async (user, args) => {
+      let query = Post.query().where({ author_id: user.id })
+
+      if (args.id) {
+        query.where({ id: args.id })
+      }
+
+      return await query
     }
   },
   Post: {

@@ -2,7 +2,7 @@ import config from '../knexfile'
 import knex from 'knex'
 import { Model } from 'objection'
 
-const db = knex(config[process.env.NODE_ENV || 'development'])
+export const db = knex(config[process.env.NODE_ENV || 'development'])
 
 Model.knex(db)
 

@@ -14,7 +14,7 @@ const authenticated = fn => (parent, args, { context }, info) => {
   throw new Error('User is not authenticated')
 }
 
-const resolvers = {
+export const resolvers = {
   Query: {
     viewer: authenticated((parent, args, context) => {
       return context.user

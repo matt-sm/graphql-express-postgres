@@ -38,3 +38,8 @@ mutation{createToken(email:"user@test.com", password:"password") }
 ./node_modules/.bin/babel-node ./node_modules/.bin/knex migrate:latest --env test
 ./node_modules/.bin/knex seed:run --env test
 ```
+## Tests
+```
+createdb blog
+npm run test
+```

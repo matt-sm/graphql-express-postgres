@@ -40,6 +40,6 @@ mutation{createToken(email:"user@test.com", password:"password") }
 ```
 ## Tests
 ```
-createdb blog
+createdb blog-test
 npm run test
 ```

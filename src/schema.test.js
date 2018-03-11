@@ -1,9 +1,9 @@
 import { resolvers } from './schema'
 import { db } from './db'
 
-beforeEach(() => {
-  db.migrate.latest()
-  db.seed.run()
+beforeEach(async () => {
+  await db.migrate.latest()
+  await db.seed.run()
 });
 
 test('root resolver returns context user', () => {

@@ -4,6 +4,8 @@ An experimental graphql api.
 The schema follows the classic user, posts, comments structure.  Schema definitions are built using `graphql-tools`. 
 
 Authentication uses `express-jwt`.  For protected resolvers simply wrap the function in `authenticated()`. 
+
+Tests use jest and execute against a database instance seeded with test data.
 ## Install:
 - run locally with nodemon + babel: `npm run dev`
 - build and run on a server: `npm start`

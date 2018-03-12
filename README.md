@@ -1,5 +1,5 @@
 # graphql-express-postgres [![Build Status](https://travis-ci.org/matt-sm/graphql-express-postgres.svg?branch=master)](https://travis-ci.org/matt-sm/graphql-express-postgres)
-An experimental graphql api.
+An reference graphql node api.
 
 The schema follows the classic user, posts, comments structure.  Schema definitions are built using `graphql-tools`. 
 

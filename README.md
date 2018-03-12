@@ -1,4 +1,4 @@
-# graphql-express-postgres
+# graphql-express-postgres [![Build Status](https://travis-ci.org/matt-sm/graphql-express-postgres.svg?branch=master)](https://travis-ci.org/matt-sm/graphql-express-postgres)
 An experimental graphql api.
 
 Notes:
@@ -34,6 +34,7 @@ mutation{addUser(name:"User", email:"user@test.com", password:"password") }
 mutation{createToken(email:"user@test.com", password:"password") }
 ```
 ## Database
+### Run test migrations/seeds
 ```
 ./node_modules/.bin/babel-node ./node_modules/.bin/knex migrate:latest --env test
 ./node_modules/.bin/knex seed:run --env test
@@ -41,5 +42,5 @@ mutation{createToken(email:"user@test.com", password:"password") }
 ## Tests
 ```
 createdb blog-test
-npm run test
+npm test
 ```

@@ -14,3 +14,8 @@ test('root resolver returns context user', () => {
 test('post.user returns single user', async () => {
   expect(await resolvers.Post.user({ author_id: 1 })).toHaveProperty('email', 'user@test.com')
 })
+
+test('user.posts returns posts', async () => {
+  const expected = [{author_id: 1, body: 'post body', id: 1, postDate: null, title: 'post title'}]
+  expect(await resolvers.User.posts({ id: 1 }, {})).toEqual(expect.arrayContaining(expected))
+})

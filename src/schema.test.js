@@ -25,5 +25,5 @@ test('post.comments returns comments for post', async () => {
 
 test('user.posts returns posts', async () => {
   const expected = [{ author_id: 1, body: 'post body', id: 1, postDate: null, title: 'post title' }]
-  expect(await resolvers.User.posts({ id: 1 }, {})).toEqual(expect.arrayContaining(expected))
+  expect(await resolvers.User.posts({ id: 1 }, {})).toEqual(expected)
 })

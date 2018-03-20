@@ -5,6 +5,10 @@ beforeAll(async () => {
   await db.migrate.latest()
 })
 
+afterAll(async () => {
+  await db.destroy()
+})
+
 beforeEach(async () => {
   await db.seed.run()
 })

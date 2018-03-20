@@ -33,5 +33,23 @@ test('user.posts returns posts', async () => {
 })
 
 test('createToken does not throw when valid credentials', async () => {
-  expect(await resolvers.Mutation.createToken(null, {email: 'user@test.com', password: 'password'})).not.toBeNull()
+  expect(await resolvers.Mutation.createToken(null, { email: 'user@test.com', password: 'password' })).not.toBeNull()
+})
+
+test('createToken throws when invalid password', async () => {
+  expect.assertions(1)
+  await expect(
+    resolvers.Mutation.createToken(null, { email: 'user@test.com', password: 'invalid' })
+  ).rejects.toMatchObject({
+    message: 'Invalid email or password.'
+  })
+})
+
+test('createToken throws when invalid email', async () => {
+  expect.assertions(1)
+  await expect(
+    resolvers.Mutation.createToken(null, { email: 'user2@test.com', password: 'password' })
+  ).rejects.toMatchObject({
+    message: 'Invalid email or password.'
+  })
 })

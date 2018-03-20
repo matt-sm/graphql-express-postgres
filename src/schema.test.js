@@ -53,3 +53,12 @@ test('createToken throws when invalid email', async () => {
     message: 'Invalid email or password.'
   })
 })
+
+test('addUser throws when duplicate email', async () => {
+  expect.assertions(1)
+  await expect(
+    resolvers.Mutation.addUser(null, { name: '', email: 'user@test.com', password: '' })
+  ).rejects.toMatchObject({
+    message: 'User user@test.com already exists.'
+  })
+})

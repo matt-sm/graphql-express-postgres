@@ -31,11 +31,12 @@
     "prettier": "./node_modules/.bin/prettier --print-width 120 --single-quote --no-semi --write \"{migrations,src}/**/*.js\"",
     "migrate": "./node_modules/.bin/babel-node ./node_modules/.bin/knex migrate:latest",
     "test": "jest --watch",
-    "ci-test": "jest"
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-register": "^6.26.0",
+    "coveralls": "^3.0.0",
     "jest": "^22.4.2",
     "prettier": "1.10.2",
     "rimraf": "^2.6.2"

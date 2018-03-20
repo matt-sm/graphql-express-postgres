@@ -18,6 +18,10 @@ test('root resolver returns context user', () => {
   expect(resolvers.Query.viewer(null, null, { context: { user } })).toBe(user)
 })
 
+test('root resolver throws when invalid context', () => {
+  expect(() => resolvers.Query.viewer(null, null, {})).toThrowError('User is not authenticated')
+})
+
 test('post.user returns single user', async () => {
   expect(await resolvers.Post.user({ author_id: 1 })).toHaveProperty('email', 'user@test.com')
 })

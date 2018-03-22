@@ -6,6 +6,7 @@ beforeAll(async () => {
 })
 
 afterAll(async () => {
+  await db.migrate.rollback()
   await db.destroy()
 })
 

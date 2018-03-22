@@ -35,7 +35,7 @@ export const up = async knex => {
 }
 
 export const down = async knex => {
-  await knex.schema.dropTable('user')
+  await knex.schema.dropTable('comment')
   await knex.schema.dropTable('post')
-  return await knex.schema.dropTable('comment')
+  return await knex.schema.dropTable('user')
 }

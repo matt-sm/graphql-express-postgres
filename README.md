@@ -1,4 +1,4 @@
-# graphql-express-postgres [![Build Status](https://travis-ci.org/matt-sm/graphql-express-postgres.svg?branch=master)](https://travis-ci.org/matt-sm/graphql-express-postgres)
+# graphql-express-postgres [![Build Status](https://travis-ci.org/matt-sm/graphql-express-postgres.svg?branch=master)](https://travis-ci.org/matt-sm/graphql-express-postgres) [![Coverage Status](https://coveralls.io/repos/github/matt-sm/graphql-express-postgres/badge.svg?branch=master)](https://coveralls.io/github/matt-sm/graphql-express-postgres?branch=master)
 An reference graphql api built with node and postgres.
 
 The schema follows the classic user, posts, comments structure.  Schema definitions are built using `graphql-tools`. `Objection` for ORM and `knex` for db migrations/seeds.

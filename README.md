@@ -11,6 +11,7 @@ Tests use `jest` and execute against a database instance seeded with test data.
 - build and run on a server: `npm start`
 - db migrations: `npm run migrate`
 - format code: `npm run prettier`
+- tests: `createdb blog-test` then `npm test`
 
 ## Samples
 ### Queries

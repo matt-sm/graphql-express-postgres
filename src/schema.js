@@ -55,7 +55,7 @@ export const resolvers = {
       }
 
       const hash = await bcrypt.hash(password, saltRounds)
-      return await User.query().insert({ name, email, hash })
+      return await User.query().insert({ name, email, password: hash })
     },
     addPost: authenticated(async (parent, { title, body }, context) => {
       return await Post.query().insert({ title, body, author_id: context.user.id })

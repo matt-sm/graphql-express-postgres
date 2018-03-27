@@ -67,3 +67,9 @@ test('addUser throws when duplicate email', async () => {
     message: 'User user@test.com already exists.'
   })
 })
+
+test('addUser creates a new user', async () => {
+  const expected = await resolvers.Mutation.addUser(null, { name: 'John Doe', email: 'jd@test.com', password: 'password' })
+  expect(expected).toHaveProperty('email', 'jd@test.com')
+  expect(expected).toHaveProperty('name', 'John Doe')
+})

@@ -37,7 +37,7 @@ mutation{createToken(email:"user@test.com", password:"password") }
 ```
 createdb blog-test
 ./node_modules/.bin/babel-node ./node_modules/.bin/knex migrate:latest --env test
-./node_modules/.bin/knex seed:run --env test
+./node_modules/.bin/babel-node ./node_modules/.bin/knex seed:run --env test
 ```
 ## Prior Art:
 - express/babel setup: [https://github.com/vmasto/express-babel](https://github.com/vmasto/express-babel)

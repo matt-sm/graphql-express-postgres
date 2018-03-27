@@ -1,4 +1,4 @@
-exports.seed = async (knex, Promise) => {
+export const seed = async (knex, Promise) => {
   await knex.schema.raw('truncate table "user" restart identity cascade;')
 
   await knex('user').insert([

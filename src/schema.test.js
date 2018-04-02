@@ -69,7 +69,21 @@ test('addUser throws when duplicate email', async () => {
 })
 
 test('addUser creates a new user', async () => {
-  const expected = await resolvers.Mutation.addUser(null, { name: 'John Doe', email: 'jd@test.com', password: 'password' })
+  const expected = await resolvers.Mutation.addUser(null, {
+    name: 'John Doe',
+    email: 'jd@test.com',
+    password: 'password'
+  })
   expect(expected).toHaveProperty('email', 'jd@test.com')
   expect(expected).toHaveProperty('name', 'John Doe')
+})
+
+test('addPost creates a new post', async () => {
+  const expected = await resolvers.Mutation.addPost(
+    null,
+    { title: 'test post title', body: 'test post body' },
+    { context: { user: { id: 1 } } }
+  )
+  expect(expected).toHaveProperty('title', 'test post title')
+  expect(expected).toHaveProperty('body', 'test post body')
 })

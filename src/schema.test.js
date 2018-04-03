@@ -87,3 +87,14 @@ test('addPost creates a new post', async () => {
   expect(expected).toHaveProperty('title', 'test post title')
   expect(expected).toHaveProperty('body', 'test post body')
 })
+
+test('addComment creates a new comment', async () => {
+  const expected = await resolvers.Mutation.addComment(
+    null,
+    { post_id: 1, body: 'test comment body' },
+    { context: { user: { id: 1 } } }
+  )
+  expect(expected).toHaveProperty('post_id', 1)
+  expect(expected).toHaveProperty('author_id', 1)
+  expect(expected).toHaveProperty('body', 'test comment body')
+})

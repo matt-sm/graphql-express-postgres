@@ -29,6 +29,9 @@ export const resolvers = {
       }
 
       return await query
+    },
+    comments: async user => {
+      return await Comment.query().where({ author_id: user.id })
     }
   },
   Post: {

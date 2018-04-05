@@ -13,6 +13,7 @@ The schema follows the classic user, posts, comments structure.
 - build and run on a server: `npm start`
 - db migrations: `npm run migrate`
 - format code: `npm run prettier`
+- lint code: `npm run eslint`
 - tests: `createdb blog-test` then `npm test`
 
 ## Samples

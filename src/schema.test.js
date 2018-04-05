@@ -38,6 +38,11 @@ test('user.posts returns posts', async () => {
   expect(await resolvers.User.posts({ id: 1 }, { id: 1 })).toEqual(expected)
 })
 
+test('user.comments returns comments', async () => {
+  const expected = [{"author_id": 1, "body": "comment body", "id": 1, "postDate": null, "post_id": 1}]
+  expect(await resolvers.User.comments({ id: 1 })).toEqual(expected)
+})
+
 test('createToken does not throw when valid credentials', async () => {
   expect(await resolvers.Mutation.createToken(null, { email: 'user@test.com', password: 'password' })).not.toBeNull()
 })

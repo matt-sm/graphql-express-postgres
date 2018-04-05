@@ -30,7 +30,7 @@ app.use('/graphql', async (req, res, next) => {
 app.use(
   '/graphql',
   graphqlHTTP({
-    schema: schema,
+    schema,
     graphiql: true
   })
 )

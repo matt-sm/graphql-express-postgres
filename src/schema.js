@@ -16,13 +16,11 @@ const authenticated = fn => (parent, args, { context }, info) => {
 
 export const resolvers = {
   Query: {
-    viewer: authenticated((parent, args, context) => {
-      return context.user
-    })
+    viewer: authenticated((parent, args, context) => context.user)
   },
   User: {
     posts: async (user, args) => {
-      let query = Post.query().where({ author_id: user.id })
+      const query = Post.query().where({ author_id: user.id })
 
       if (args.id) {
         query.where({ id: args.id })
@@ -30,17 +28,11 @@ export const resolvers = {
 
       return await query
     },
-    comments: async user => {
-      return await Comment.query().where({ author_id: user.id })
-    }
+    comments: async user => await Comment.query().where({ author_id: user.id })
   },
   Post: {
-    user: async post => {
-      return await User.query().findOne({ id: post.author_id })
-    },
-    comments: async post => {
-      return await Comment.query().where({ post_id: post.id })
-    }
+    user: async post => await User.query().findOne({ id: post.author_id }),
+    comments: async post => await Comment.query().where({ post_id: post.id })
   },
   Mutation: {
     createToken: async (parent, { email, password }) => {
@@ -60,12 +52,13 @@ export const resolvers = {
       const hash = await bcrypt.hash(password, saltRounds)
       return await User.query().insert({ name, email, password: hash })
     },
-    addPost: authenticated(async (parent, { title, body }, context) => {
-      return await Post.query().insert({ title, body, author_id: context.user.id })
-    }),
-    addComment: authenticated(async (parent, { body, post_id }, context) => {
-      return await Comment.query().insert({ body, post_id, author_id: context.user.id })
-    })
+    addPost: authenticated(
+      async (parent, { title, body }, context) => await Post.query().insert({ title, body, author_id: context.user.id })
+    ),
+    addComment: authenticated(
+      async (parent, { body, post_id }, context) =>
+        await Comment.query().insert({ body, post_id, author_id: context.user.id })
+    )
   }
 }
 

@@ -19,7 +19,7 @@ export const up = async knex => {
     table.dateTime('postDate')
   })
 
-  return await knex.schema.createTable('comment', table => {
+  return knex.schema.createTable('comment', table => {
     table.increments('id').primary()
     table.string('body')
     table
@@ -37,5 +37,5 @@ export const up = async knex => {
 export const down = async knex => {
   await knex.schema.dropTable('comment')
   await knex.schema.dropTable('post')
-  return await knex.schema.dropTable('user')
+  return knex.schema.dropTable('user')
 }

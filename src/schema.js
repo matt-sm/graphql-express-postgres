@@ -26,13 +26,13 @@ export const resolvers = {
         query.where({ id: args.id })
       }
 
-      return await query
+      return query
     },
-    comments: async user => await Comment.query().where({ author_id: user.id })
+    comments: async user => Comment.query().where({ author_id: user.id })
   },
   Post: {
-    user: async post => await User.query().findOne({ id: post.author_id }),
-    comments: async post => await Comment.query().where({ post_id: post.id })
+    user: async post => User.query().findOne({ id: post.author_id }),
+    comments: async post => Comment.query().where({ post_id: post.id })
   },
   Mutation: {
     createToken: async (parent, { email, password }) => {
@@ -50,14 +50,13 @@ export const resolvers = {
       }
 
       const hash = await bcrypt.hash(password, saltRounds)
-      return await User.query().insert({ name, email, password: hash })
+      return User.query().insert({ name, email, password: hash })
     },
-    addPost: authenticated(
-      async (parent, { title, body }, context) => await Post.query().insert({ title, body, author_id: context.user.id })
+    addPost: authenticated(async (parent, { title, body }, context) =>
+      Post.query().insert({ title, body, author_id: context.user.id })
     ),
-    addComment: authenticated(
-      async (parent, { body, post_id }, context) =>
-        await Comment.query().insert({ body, post_id, author_id: context.user.id })
+    addComment: authenticated(async (parent, { body, post_id }, context) =>
+      Comment.query().insert({ body, post_id, author_id: context.user.id })
     )
   }
 }

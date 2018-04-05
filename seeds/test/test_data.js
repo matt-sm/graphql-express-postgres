@@ -7,7 +7,7 @@ export const seed = async (knex, Promise) => {
   await knex('post').insert([
     {title: 'post title', body: 'post body', author_id: 1}
   ]);
-  return await knex('comment').insert([
+  return knex('comment').insert([
     {body: 'comment body', post_id: 1, author_id: 1}
   ]);
 };

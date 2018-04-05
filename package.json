@@ -29,6 +29,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && mkdir -p dist && babel src -s -D -d dist",
     "prettier": "./node_modules/.bin/prettier --print-width 120 --single-quote --no-semi --write \"{migrations,src}/**/*.js\"",
+    "eslint": "./node_modules/.bin/eslint .",
     "migrate": "./node_modules/.bin/babel-node ./node_modules/.bin/knex migrate:latest",
     "test": "jest --watch",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"

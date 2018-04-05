@@ -13,7 +13,7 @@ module.exports = {
       database: 'blog-test'
     },
     seeds: {
-        directory: __dirname + '/seeds/test'
+        directory: `${__dirname  }/seeds/test`
     }
   }
 };

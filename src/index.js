@@ -1,9 +1,9 @@
 import express from 'express'
 import graphqlHTTP from 'express-graphql'
-import schema from './schema'
-import db, { User } from './db'
 import morgan from 'morgan'
 import jwt from 'express-jwt'
+import schema from './schema'
+import { User } from './db'
 
 const app = express()
 
@@ -36,4 +36,4 @@ app.use(
 )
 
 app.listen(4000)
-console.log('Listening on port 4000')
+console.log('Listening on port 4000') // eslint-disable-line

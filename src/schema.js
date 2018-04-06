@@ -1,8 +1,8 @@
-import { User, Post, Comment } from './db'
 import { makeExecutableSchema } from 'graphql-tools'
 import { importSchema } from 'graphql-import'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import { User, Post, Comment } from './db'
 
 const typeDefs = importSchema('./schema/schema.graphql')
 const saltRounds = 10
@@ -44,8 +44,8 @@ export const resolvers = {
       throw new Error('Invalid email or password.')
     },
     addUser: async (parent, { name, email, password }) => {
-      const current_user = await User.query().findOne({ email })
-      if (current_user) {
+      const currentUser = await User.query().findOne({ email })
+      if (currentUser) {
         throw new Error(`User ${email} already exists.`)
       }
 
@@ -55,8 +55,8 @@ export const resolvers = {
     addPost: authenticated(async (parent, { title, body }, context) =>
       Post.query().insert({ title, body, author_id: context.user.id })
     ),
-    addComment: authenticated(async (parent, { body, post_id }, context) =>
-      Comment.query().insert({ body, post_id, author_id: context.user.id })
+    addComment: authenticated(async (parent, args, context) =>
+      Comment.query().insert({ body: args.body, post_id: args.post_id, author_id: context.user.id })
     )
   }
 }

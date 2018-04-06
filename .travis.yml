@@ -3,4 +3,5 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database "blog-test";' -U postgres
+  - npm run eslint
 script: npm run coveralls

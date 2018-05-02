@@ -1,5 +1,6 @@
 import express from 'express'
-import graphqlHTTP from 'express-graphql'
+import bodyParser from 'body-parser'
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import morgan from 'morgan'
 import jwt from 'express-jwt'
 import schema from './schema'
@@ -27,13 +28,8 @@ app.use('/graphql', async (req, res, next) => {
   next()
 })
 
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    graphiql: true
-  })
-)
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 app.listen(4000)
 console.log('Listening on port 4000') // eslint-disable-line

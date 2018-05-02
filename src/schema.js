@@ -7,7 +7,7 @@ import { User, Post, Comment } from './db'
 const typeDefs = importSchema('./schema/schema.graphql')
 const saltRounds = 10
 
-const authenticated = fn => (parent, args, { context }, info) => {
+const authenticated = fn => (parent, args, context, info) => {
   if (context && context.user) {
     return fn(parent, args, context, info)
   }

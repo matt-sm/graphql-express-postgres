@@ -28,7 +28,7 @@ app.use('/graphql', async (req, res, next) => {
   next()
 })
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }))
+app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({ schema, context: req.context })))
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 app.listen(4000)

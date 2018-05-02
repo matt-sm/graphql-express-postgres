@@ -3,6 +3,7 @@ A reference graphql api built with node and postgres.
 
 The schema follows the classic user, posts, comments structure.  
 
+- Uses [Apollo Server](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-express)
 - Schema definitions are built using [graphql-tools](https://github.com/apollographql/graphql-tools). 
 - Data access built on the [Objection](https://github.com/Vincit/objection.js/) ORM and [knex](https://github.com/tgriesser/knex).
 - Authentication handled by [express-jwt](https://github.com/auth0/express-jwt) middleware.  

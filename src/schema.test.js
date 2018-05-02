@@ -16,7 +16,7 @@ beforeEach(async () => {
 
 test('root resolver returns context user', () => {
   const user = { email: 'user@test.com' }
-  expect(resolvers.Query.viewer(null, null, { context: { user } })).toBe(user)
+  expect(resolvers.Query.viewer(null, null, { user })).toBe(user)
 })
 
 test('root resolver throws when invalid context', () => {
@@ -88,7 +88,7 @@ test('addPost creates a new post', async () => {
   const expected = await resolvers.Mutation.addPost(
     null,
     { title: 'test post title', body: 'test post body' },
-    { context: { user: { id: 1 } } }
+    { user: { id: 1 } }
   )
   expect(expected).toHaveProperty('title', 'test post title')
   expect(expected).toHaveProperty('body', 'test post body')
@@ -98,7 +98,7 @@ test('addComment creates a new comment', async () => {
   const expected = await resolvers.Mutation.addComment(
     null,
     { post_id: 1, body: 'test comment body' },
-    { context: { user: { id: 1 } } }
+    { user: { id: 1 } }
   )
   expect(expected).toHaveProperty('post_id', 1)
   expect(expected).toHaveProperty('author_id', 1)

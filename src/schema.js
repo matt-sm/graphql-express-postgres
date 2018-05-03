@@ -2,6 +2,7 @@ import { makeExecutableSchema } from 'graphql-tools'
 import { importSchema } from 'graphql-import'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import DataLoader from 'dataloader'
 import { User, Post, Comment } from './db'
 
 const typeDefs = importSchema('./schema/schema.graphql')
@@ -13,6 +14,11 @@ const authenticated = fn => (parent, args, context, info) => {
   }
   throw new Error('User is not authenticated')
 }
+
+const findCommentsLoader = new DataLoader(async posts => {
+  const comments = await Comment.query().whereIn('post_id', posts.map(p => p.id))
+  return posts.map(p => comments.filter(c => c.post_id === p.id))
+})
 
 export const resolvers = {
   Query: {
@@ -32,7 +38,7 @@ export const resolvers = {
   },
   Post: {
     user: async post => User.query().findOne({ id: post.author_id }),
-    comments: async post => Comment.query().where({ post_id: post.id })
+    comments: async post => findCommentsLoader.load(post)
   },
   Mutation: {
     createToken: async (parent, { email, password }) => {

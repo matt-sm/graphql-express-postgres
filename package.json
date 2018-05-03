@@ -11,6 +11,7 @@
     "babel-preset-env": "^1.6.1",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "dataloader": "^1.4.0",
     "express": "^4.16.2",
     "express-jwt": "^5.3.0",
     "graphql": "^0.12.3",

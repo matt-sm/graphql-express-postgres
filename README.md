@@ -50,4 +50,4 @@ createdb blog-test
 - knex ideas: [https://github.com/dYale/knexBlogBackend](https://github.com/dYale/knexBlogBackend)
 - graphql schema: [https://github.com/mrblueblue/graphql-express-sqlite](https://github.com/mrblueblue/graphql-express-sqlite)
 - authentication: [https://scaphold.io/community/blog/authentication-in-graphql/](https://scaphold.io/community/blog/authentication-in-graphql/)
-- data loader: [https://spin.atomicobject.com/2017/05/15/optimize-graphql-queries/]
+- data loader: [https://spin.atomicobject.com/2017/05/15/optimize-graphql-queries/](https://spin.atomicobject.com/2017/05/15/optimize-graphql-queries/)

@@ -31,5 +31,5 @@ app.use('/graphql', async (req, res, next) => {
 app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({ schema, context: req.context })))
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
-app.listen(4000)
-console.log('Listening on port 4000') // eslint-disable-line
+app.listen(4000, console.log('Listening on port 4000'))
+// eslint-disable-line
